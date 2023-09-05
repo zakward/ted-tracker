@@ -33,6 +33,11 @@ app.use((err, req, res, next) => {
   }
   return res.send({ errMsg: err.message });
 });
+
+if (process.env.NODE_ENV === "production") {
+  //*Set static folder up in production
+  app.use(express.static("client/build"));
+}
 app.get("*", (req, res) => {
   res.sendFile(path.join(__dirname, "client", "dist", "index.html")); // middleware for deployment // dist for vite
 });
