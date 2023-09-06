@@ -11,6 +11,8 @@ app.use(express.json());
 app.use(morgan("dev"));
 mongoose.set("strictQuery", false);
 
+//test
+
 app.use(express.static(path.join(__dirname, "client", "dist"))); // middleware for deployment  //dist for vite and build for cra
 mongoose.connect(process.env.MONGO_URI, (err) => {
   if (err) {
