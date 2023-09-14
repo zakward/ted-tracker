@@ -48,6 +48,35 @@ tedRouter.get("/allWithComments", (req, res, next) => {
           .find({ tedId: bud._id })
           .populate("userId", "-password");
         const tedUser = await user.findById(bud.userId);
+        console.log(bud.userId);
+        return {
+          ...bud.toObject(),
+          tedUser: tedUser.withoutPassword(),
+          comments: comments,
+        };
+      })
+    );
+    res.status(200).send(tedWithCommments);
+  });
+});
+
+tedRouter.get("/test", (req, res, next) => {
+  return res.status(200).send("test");
+});
+
+tedRouter.get("/userTedWithComments", (req, res, next) => {
+  Ted.find({ userId: req.auth._id }, async (err, ted) => {
+    if (err) {
+      res.status(500);
+      return next(err);
+    }
+    const tedWithCommments = await Promise.all(
+      ted.map(async (bud) => {
+        const comments = await comment
+          .find({ tedId: bud._id })
+          .populate("userId", "-password");
+        const tedUser = await user.findById(bud.userId);
+        console.log(bud.userId);
         return {
           ...bud.toObject(),
           tedUser: tedUser.withoutPassword(),

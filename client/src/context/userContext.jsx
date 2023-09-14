@@ -138,6 +138,7 @@ function UserProvider(props) {
         tedData,
         addTedData,
         deleteComment,
+        userAxios,
       }}
     >
       {props.children}

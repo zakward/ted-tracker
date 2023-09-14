@@ -2,10 +2,9 @@ import AuthForm from "./AuthForm";
 import { UserContext } from "./context/userContext";
 import { useState, useContext } from "react";
 
-const initInputs = { username: "", password: "", email: "" };
-
 function Login() {
   const { signup, login, errMsg, resetAuthErr } = useContext(UserContext);
+  const initInputs = { username: "", password: "", email: "" };
 
   const [inputs, setInputs] = useState(initInputs);
 

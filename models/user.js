@@ -13,6 +13,18 @@ const userSchema = new Schema({
     type: String,
     required: true,
   },
+  firstName: {
+    type: String,
+  },
+  lastName: {
+    type: String,
+  },
+  profileImgUrl: {
+    type: String,
+  },
+  bannerImgUrl: {
+    type: String,
+  },
   userSince: {
     type: Date,
     default: Date.now,

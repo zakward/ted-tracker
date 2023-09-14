@@ -4,6 +4,7 @@ import moment from "moment";
 import { UserContext } from "./context/userContext";
 
 export default function TedDetails(props) {
+  console.log(props);
   const { deleteComment, user, _id } = useContext(UserContext);
   const [commentToggle, setCommentToggle] = useState(false);
   const [inputToggle, setInputToggle] = useState(false);
@@ -19,7 +20,7 @@ export default function TedDetails(props) {
     });
   };
 
-  const commentList = props.ted.comments.map((comment) => {
+  const commentList = props.comments.map((comment) => {
     return (
       <CommentList
         // handleDeleteComment={handleDeleteComment}
@@ -38,7 +39,7 @@ export default function TedDetails(props) {
     setTextAreaToggle((prev) => !prev);
   };
 
-  console.log(props.ted.comments);
+  console.log(props.comments);
   let viewOrHide;
 
   if (commentToggle === false) {
@@ -47,32 +48,32 @@ export default function TedDetails(props) {
     viewOrHide = `Hide`;
   }
 
-  const timestamp = props.ted.datePurchased;
+  const timestamp = props.datePurchased;
   const timePassed = moment(timestamp).fromNow();
   return (
     <>
       <div key={props._id} id={"ted-details-container"}>
-        <h1>{props.ted.name}</h1>
-        <p>Strength: {props.ted.strength}</p>
-        <p>Effects: {props.ted.effects}</p>
-        <p>Flavor: {props.ted.flavor}</p>
-        <p>Lineage: {props.ted.lineage}</p>
-        <p>Price: {props.ted.price}</p>
+        <h1>{props.name}</h1>
+        <p>Strength: {props.strength}</p>
+        <p>Effects: {props.effects}</p>
+        <p>Flavor: {props.flavor}</p>
+        <p>Lineage: {props.lineage}</p>
+        <p>Price: {props.price}</p>
         {/* <p>{props.ted.comments}</p> */}
-        <p>Category: {props.ted.category}</p>
+        <p>Category: {props.category}</p>
         <p>Date Purchased: {timePassed}</p>
-        <img src={props.ted.imgUrl} alt="flower" className="ted-img" />
-        {props.ted.comments.length > 0 && (
+        <img src={props.imgUrl} alt="flower" className="ted-img" />
+        {props.comments.length > 0 && (
           <button
             className="view-cmt-btn"
             onClick={() => setCommentToggle((prev) => !prev)}
           >
-            {props.ted.comments.length === 1
+            {props.comments.length === 1
               ? `${viewOrHide} comment`
-              : `${viewOrHide} all ${props.ted.comments.length} comments`}
+              : `${viewOrHide} all ${props.comments.length} comments`}
           </button>
         )}
-        {props.ted.comments.length === 0 && (
+        {props.comments.length === 0 && (
           <button
             className="view-cmt-btn"
             onClick={() => {

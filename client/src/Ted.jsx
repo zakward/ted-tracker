@@ -13,12 +13,13 @@ export default function Ted() {
   console.log(tedData);
 
   const tedElements = tedData.map((ted) => (
-    <TedDetails key={ted._id} ted={ted} />
+    <TedDetails key={ted._id} {...ted} />
   ));
 
   return (
-    <>
+    <div id="public-page">
+      <h1>PUBLIC PAGE</h1>
       <div id="ted-list">{tedElements}</div>
-    </>
+    </div>
   );
 }
